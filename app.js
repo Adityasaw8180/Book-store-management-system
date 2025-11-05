@@ -243,5 +243,5 @@ app.use(errorHandler);
 
 // ---------- Start Server ----------
 app.listen(8080, () => {
-  console.log("✅ App is listening on port http://localhost:8080");
+  console.log("App is listening on port http://localhost:8080");
 });
