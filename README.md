@@ -165,7 +165,7 @@ http://localhost:8080
 ![Books Detail Page](screenshots/books_detail_page.png)
 
 #### Edit Book Page
-![Books Detail Page](screenshots/books_detail_page.png)
+![Edit Book Page](screenshots/book_edit-page.png)
 
 #### Authors Page
 ![Authors Page](screenshots/authors_page.png)
