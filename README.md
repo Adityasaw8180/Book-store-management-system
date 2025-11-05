@@ -74,7 +74,7 @@ A full-stack **Book Store Management System** built with **Node.js**, **Express*
 │   └── 📄 publisherRoutes.js
 ├── 📁 screenshots
 │   ├── 🖼️ add_book_page.png
-│   ├── 🖼️ authors_page.png.png
+│   ├── 🖼️ authors_page.png
 │   ├── 🖼️ book_edit-page.png
 │   ├── 🖼️ books_detail_page.png
 │   ├── 🖼️ home_page.png
@@ -124,24 +124,24 @@ A full-stack **Book Store Management System** built with **Node.js**, **Express*
 ### Installation
 1. Clone the repository:
 ```bash
-git clone <repository_url>
+git clone https://github.com/SiddheshKharade07/Book-store-management-system.git
 ```
-2.Navigate into the project directory:
+2. Navigate into the project directory:
 ```bash
 cd Book-store-management-system
 ```
-3.Install dependencies:
+3. Install dependencies:
 ```bash
 npm install
 ```
-4.Set up your PostgreSQL database and configure connection in db.js.
+4. Set up your PostgreSQL database and configure connection in db.js.
 
 
-5.Run the app:
+5. Run the app:
 ```bash
 npm start
 ```
-6.Open your browser at:
+6. Open your browser at:
 ```bash
 http://localhost:8080
 ```
@@ -165,7 +165,7 @@ http://localhost:8080
 ![Books Detail Page](screenshots/books_detail_page.png)
 
 #### Edit Book Page
-![Books Detail Page](screenshots/books_detail_page.png)
+![Edit Book Page](screenshots/book_edit-page.png)
 
 #### Authors Page
 ![Authors Page](screenshots/authors_page.png)
