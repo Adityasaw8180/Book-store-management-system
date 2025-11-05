@@ -1,0 +1,90 @@
+<% layout("layouts/boilerplate") %>
+<div class="row mt-3">
+  <div class="col-8 offset-3">
+    <h3>✏️ Edit Book</h3>
+
+    <form method="POST" action="/books/<%= book.isbn %>" novalidate class="needs-validation">
+      <!-- Title -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Book Title</label>
+        <input
+          name="book[title]"
+          value="<%= book.title %>"
+          placeholder="Enter book title"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="valid-feedback">Title looks good!</div>
+        <div class="invalid-feedback">Please enter a valid title</div>
+      </div>
+
+      <!-- ISBN (read-only) -->
+      <div class="mb-3">
+        <label for="isbn" class="form-label">ISBN</label>
+        <input
+          name="book[isbn]"
+          value="<%= book.isbn %>"
+          type="text"
+          class="form-control"
+          readonly
+        />
+      </div>
+
+      <!-- Author -->
+      <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <select name="book[author_id]" class="form-select" required>
+          <option value="" disabled>Select an author</option>
+          <% authors.forEach(author => { %>
+          <option value="<%= author.author_id %>" <%= currentAuthorId == author.author_id ? 'selected' : '' %>><%= author.name %></option>
+          <% }) %>
+        </select>
+        <div class="invalid-feedback">Please select an author</div>
+      </div>
+
+      <!-- Publisher -->
+      <div class="mb-3">
+        <label for="publisher" class="form-label">Publisher</label>
+        <select name="book[publisher_name]" class="form-select" required>
+          <option value="" disabled>Select a publisher</option>
+          <% publishers.forEach(publisher => { %>
+          <option value="<%= publisher.name %>" <%= book.publisher_name == publisher.name ? 'selected' : '' %>><%= publisher.name %></option>
+          <% }) %>
+        </select>
+        <div class="invalid-feedback">Please select a publisher</div>
+      </div>
+
+      <!-- Publication Year -->
+      <div class="mb-3 col-md-6">
+        <label for="year" class="form-label">Publication Year</label>
+        <input
+          name="book[publication_year]"
+          value="<%= book.publication_year %>"
+          type="number"
+          class="form-control"
+          min="1500"
+          max="2025"
+          required
+        />
+        <div class="invalid-feedback">Enter a valid year</div>
+      </div>
+
+      <!-- Price -->
+      <div class="mb-3 col-md-6">
+        <label for="price" class="form-label">Price</label>
+        <input
+          name="book[price]"
+          value="<%= book.price %>"
+          type="number"
+          class="form-control"
+          step="0.01"
+          required
+        />
+        <div class="invalid-feedback">Enter a valid price</div>
+      </div>
+
+      <button class="btn btn-dark add-btn mt-3 mb-3">Save Changes</button>
+    </form>
+  </div>
+</div>
