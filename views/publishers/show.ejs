@@ -1,6 +1,7 @@
 <% layout("/layouts/boilerplate") %>
 <link rel="stylesheet" href="/css/authAndPub.css" />
 <link rel="stylesheet" href="/css/style.css" />
+
 <section class="page-header">
   <div class="container">
     <h1>🏢 All Publishers</h1>
@@ -35,7 +36,16 @@
               <span class="contact-text"><%= publisher.phone %></span>
             </td>
             <td>
-              <div class="actions-cell">
+              <div class="actions-cell d-flex gap-2">
+                <!-- Edit Button -->
+                <a
+                  href="/publishers/edit/<%= publisher.publisher_id %>"
+                  class="btn btn-sm btn-warning-custom"
+                >
+                  Edit
+                </a>
+
+                <!-- Delete Button -->
                 <form
                   method="POST"
                   action="/publishers/delete/<%= publisher.publisher_id %>"

@@ -38,6 +38,28 @@ app.get(
   })
 );
 
+// book details
+app.get(
+  "/books/all",
+  wrapAsync(async (req, res) => {
+    const books = await db.any(
+      `SELECT 
+         b.title,
+         b.isbn,
+         b.publisher_name,
+         b.year,
+         b.price,
+         a.name AS author_name
+       FROM book b
+       JOIN bookauthor ba ON b.isbn = ba.book_isbn
+       JOIN author a ON ba.author_id = a.author_id
+       ORDER BY b.title;`
+    );
+
+    res.render("books/all", { books });
+  })
+);
+
 // ---------- Books ----------
 app.get(
   "/books",
@@ -96,7 +118,7 @@ app.post("/books", async (req, res, next) => {
     next(err);
   }
 });
- 
+
 // ---------- Authors ----------
 app.get(
   "/authors",

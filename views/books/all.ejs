@@ -1,0 +1,52 @@
+<% layout("/layouts/boilerplate") %>
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/authAndPub.css" />
+
+<section class="page-header">
+  <div class="container">
+    <h1>📚 Books details</h1>
+  </div>
+</section>
+
+<div class="container">
+  <% if (books && books.length > 0) { %>
+  <div class="table-container">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>ISBN</th>
+            <th>Year</th>
+            <th>Price (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% books.forEach(book => { %>
+          <tr>
+            <td class="contact-text"><b><%= book.title %></b></td>
+            <td class="contact-text"><%= book.author_name %></td>
+            <td class="context-text"><%= book.publisher_name %></td>
+            <td class="contact-text"><%= book.isbn %></td>
+            <td class="contact-text"><%= book.year %></td>
+            <td>
+              <span class="price"
+                ><%= book.price %></span
+              >
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% } else { %>
+  <div class="empty-state">
+    <div class="empty-state-icon">📭</div>
+    <h2>No books found in the system.</h2>
+    <p>Start by adding your first book to get started.</p>
+  </div>
+  <% } %>
+</div>

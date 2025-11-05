@@ -1,6 +1,7 @@
 <% layout("/layouts/boilerplate") %>
-<link rel="stylesheet" href="css/books.css" />
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/books.css" />
+<link rel="stylesheet" href="/css/style.css" />
+
 <section class="page-header">
   <div class="container">
     <h1>📚 All Books</h1>
@@ -29,13 +30,20 @@
             <td><strong><%= book.title %></strong></td>
             <td class="responsive-hide"><%= book.year %></td>
             <td>
-              <span class="price"
-                >$<%= parseFloat(book.price).toFixed(2) %></span
-              >
+              <span class="price"><%= book.price %></span>
             </td>
             <td class="responsive-hide"><%= book.publisher %></td>
             <td>
-              <div class="actions-cell">
+              <div class="actions-cell d-flex gap-2">
+                <!-- ✏️ Edit Button -->
+                <a
+                  href="/books/edit/<%= book.isbn %>"
+                  class="btn btn-sm btn-warning-custom"
+                >
+                  Edit
+                </a>
+
+                <!-- 🗑️ Delete Button -->
                 <form
                   method="POST"
                   action="/books/delete/<%= book.isbn %>"
