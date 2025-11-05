@@ -1,0 +1,85 @@
+<% layout("layouts/boilerplate") %>
+<div class="container mt-4">
+  <h3>Edit Author</h3>
+
+  <form
+    action="/authors/<%= author.author_id %>?_method=PUT"
+    method="POST"
+    class="mt-3 mb-3 needs-validation"
+    novalidate
+  >
+    <div class="mb-3">
+      <label for="name" class="form-label">Author Name</label>
+      <input
+        type="text"
+        id="name"
+        name="author[name]"
+        class="form-control"
+        value="<%= author.name %>"
+        required
+        minlength="3"
+        maxlength="100"
+      />
+      <div class="invalid-feedback">
+        Please enter a valid author name (3–100 characters).
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="url" class="form-label">Website URL</label>
+      <input
+        type="url"
+        id="url"
+        name="author[url]"
+        class="form-control"
+        value="<%= author.url %>"
+        placeholder="https://example.com"
+        pattern="https?://.+"
+        required
+      />
+      <div class="invalid-feedback">
+        Please enter a valid URL starting with http:// or https://
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="address" class="form-label">Country</label>
+      <input
+        type="text"
+        id="address"
+        name="author[address]"
+        class="form-control"
+        value="<%= author.address %>"
+        maxlength="100"
+        required
+      />
+      <div class="invalid-feedback">
+        Please enter the author's country or address.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Author</button>
+    <a href="/authors" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+
+<script>
+  // Bootstrap-style validation
+  (function () {
+    "use strict";
+    const forms = document.querySelectorAll(".needs-validation");
+    Array.from(forms).forEach((form) => {
+      form.addEventListener(
+        "submit",
+        (event) => {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>

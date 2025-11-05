@@ -40,7 +40,7 @@
               <div class="actions-cell d-flex gap-2">
                 <!-- ✏️ Edit Button -->
                 <a
-                  href="/publishers/edit/<%= publisher.publisher_id %>"
+                  href="/publishers/<%= publisher.name %>/edit"
                   class="btn btn-sm btn-warning-custom"
                 >
                   Edit
@@ -49,7 +49,7 @@
                 <!-- 🗑️ Delete Button -->
                 <form
                   method="POST"
-                  action="/publishers/delete/<%= publisher.publisher_id %>"
+                  action="/publishers/delete/<%= publisher.name %>?_method=DELETE"
                   style="display: inline"
                   onsubmit="return confirm('Are you sure you want to delete this publisher?');"
                 >

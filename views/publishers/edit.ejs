@@ -1,0 +1,73 @@
+<% layout("layouts/boilerplate") %>
+<div class="container mt-4">
+  <h3>Edit Publisher</h3>
+  <form
+    action="/publishers/<%= publisher.name %>?_method=PUT"
+    method="POST"
+    class="mt-3 mb-3 needs-validation"
+    novalidate
+  >
+    <div class="mb-3">
+      <label for="new_name" class="form-label">Publisher Name</label>
+      <input
+        type="text"
+        id="new_name"
+        name="publisher[new_name]"
+        class="form-control"
+        value="<%= publisher.name %>"
+        required
+      />
+      <div class="invalid-feedback">Please enter the publisher name.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <input
+        type="text"
+        id="address"
+        name="publisher[address]"
+        class="form-control"
+        value="<%= publisher.address %>"
+        required
+      />
+      <div class="invalid-feedback">Please enter the publisher address.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="url" class="form-label">Website URL</label>
+      <input
+        type="url"
+        id="url"
+        name="publisher[url]"
+        class="form-control"
+        value="<%= publisher.url %>"
+        placeholder="https://example.com"
+        required
+      />
+      <div class="invalid-feedback">
+        Please enter a valid website URL (e.g. https://example.com).
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone</label>
+      <input
+        type="text"
+        id="phone"
+        name="publisher[phone]"
+        class="form-control"
+        pattern="[0-9]{10}"
+        maxlength="10"
+        minlength="10"
+        value="<%= publisher.phone %>"
+        required
+      />
+      <div class="invalid-feedback">
+        Please enter a valid 10-digit phone number.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Publisher</button>
+    <a href="/publishers" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
