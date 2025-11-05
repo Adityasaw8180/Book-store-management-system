@@ -6,6 +6,7 @@ const bookController = require("../controllers/bookController");
 
 // Book routes
 router.get("/", wrapAsync(bookController.listBooks));
+router.get("/all", wrapAsync(bookController.allBooks));
 router.get("/new", wrapAsync(bookController.showNewForm));
 router.post("/", validateBook, wrapAsync(bookController.createBook));
 router.get("/:isbn/edit", wrapAsync(bookController.showEditForm));

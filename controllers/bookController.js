@@ -2,13 +2,20 @@ const db = require("../db");
 
 // List all books
 module.exports.listBooks = async (req, res) => {
-  const books = await db.any(
-    `SELECT b.*, a.name AS author_name
-     FROM book b
-     JOIN bookauthor ba ON b.isbn = ba.book_isbn
-     JOIN author a ON ba.author_id = a.author_id
-     ORDER BY b.title`
-  );
+  const books = await db.any(`
+      SELECT
+        book.isbn,
+        book.title,
+        book.year,
+        book.price,
+        publisher.name AS publisher,
+        publisher.address AS publisher_address,
+        publisher.phone AS publisher_phone
+      FROM book
+      LEFT JOIN publisher
+        ON book.publisher_name = publisher.name
+      ORDER BY book.title;
+    `);
   res.render("books/show", { books, activePage: "books" });
 };
 
@@ -19,6 +26,25 @@ module.exports.showNewForm = async (req, res) => {
   );
   const publishers = await db.any("SELECT name FROM publisher ORDER BY name");
   res.render("books/new", { authors, publishers });
+};
+
+// show all details of book
+module.exports.allBooks = async (req, res) => {
+  const books = await db.any(
+    `SELECT 
+         b.title,
+         b.isbn,
+         b.publisher_name,
+         b.year,
+         b.price,
+         a.name AS author_name
+       FROM book b
+       JOIN bookauthor ba ON b.isbn = ba.book_isbn
+       JOIN author a ON ba.author_id = a.author_id
+       ORDER BY b.title;`
+  );
+
+  res.render("books/all", { books });
 };
 
 // Create a new book
