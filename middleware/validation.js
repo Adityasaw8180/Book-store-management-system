@@ -59,7 +59,7 @@ module.exports.validatePublisher = (req, res, next) => {
 
 module.exports.validateBook = (req, res, next) => {
   const { error } = bookSchema.validate(req.body);
-  console.log("🧾 Body received:", req.body);
+  console.log("Body received:", req.body);
   if (error) {
     const err = new Error(error.details[0].message);
     err.statusCode = 400;

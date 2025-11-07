@@ -32,12 +32,10 @@ app.get(
   wrapAsync(async (req, res) => {
     const [bookCount, authorCount, publisherCount, recentBooks] =
       await Promise.all([
-        require("./db").one("SELECT COUNT(*) AS total_books FROM book"),
-        require("./db").one("SELECT COUNT(*) AS total_authors FROM author"),
-        require("./db").one(
-          "SELECT COUNT(*) AS total_publishers FROM publisher"
-        ),
-        require("./db").any(`
+        db.one("SELECT COUNT(*) AS total_books FROM book"),
+        db.one("SELECT COUNT(*) AS total_authors FROM author"),
+        db.one("SELECT COUNT(*) AS total_publishers FROM publisher"),
+        db.any(`
       SELECT b.title, b.isbn, b.year, b.price, a.name AS author_name, b.publisher_name
       FROM book b
       JOIN bookauthor ba ON b.isbn = ba.book_isbn
@@ -61,7 +59,7 @@ app.get(
   "/search",
   wrapAsync(async (req, res) => {
     const searchTerm = req.query.query?.trim();
-    if (!searchTerm) return res.redirect("/books");
+    if (!searchTerm) return res.redirect("/");
 
     let books = [];
     let searchType = "";
@@ -91,6 +89,13 @@ app.get(
       if (books.length > 0) searchType = "author";
     }
 
+    if (books.length === 0) {
+      books = await db.any(`SELECT * FROM book WHERE title ILIKE $1`, [
+        `%${searchTerm}%`,
+      ]);
+      if (books.length > 0) searchType = "book name";
+    }
+
     res.render("books/searchResults", { books, searchTerm, searchType });
   })
 );
@@ -98,4 +103,5 @@ app.get(
 // Error Handler
 app.use(errorHandler);
 
-app.listen(8080, () => console.log("✅ App listening on port 8080"));
+
+app.listen(8080, () => console.log("App listening on port http://localhost:8080"));
