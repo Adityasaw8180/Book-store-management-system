@@ -124,7 +124,7 @@ A full-stack **Book Store Management System** built with **Node.js**, **Express*
 ### Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/SiddheshKharade07/Book-store-management-system.git
+git clone https://github.com/Adityasaw8180/Book-store-management-system.git
 ```
 2. Navigate into the project directory:
 ```bash
